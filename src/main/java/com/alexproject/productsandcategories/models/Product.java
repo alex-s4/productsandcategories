@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +34,7 @@ public class Product {
 	@NotEmpty(message="Product description must not be blank.")
     private String description;
     
-	@NotEmpty(message="Please enter a price.")
+	@Min(value=(long) 0.01, message="Minimum amount is 0.01")
     private Double price;
 	
     @Column(updatable=false)

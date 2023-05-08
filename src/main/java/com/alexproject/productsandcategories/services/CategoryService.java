@@ -53,14 +53,18 @@ public class CategoryService {
 	
 	
 	// Other methods:
-	// Add the product to this category's list of products
+	// Add the product to this category's list of products (UNUSED)
 	public Category addOneProduct(Category category, Product product)
 	{
 		category.getProducts().add(product);
 		return catRepo.save(category);
 	}
 	
-	
+	// Retrieves a list of categories a particular product does not belong to
+	public List<Category> getAllCatNotInProd(Product product)
+	{
+		return catRepo.findByProductsNotContains(product);
+	}
 	
 	
 }

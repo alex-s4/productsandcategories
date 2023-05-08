@@ -38,7 +38,7 @@ public class ProductService {
 	}
 	
 	// Update
-	public Product updateCat(Product updatedProd)
+	public Product updateProd(Product updatedProd)
 	{
 		
 		return prodRepo.save(updatedProd);
@@ -54,11 +54,16 @@ public class ProductService {
 	
 	// Other methods:
 	// Add the product to this category's list of products
-	public Product addOneCategory(Product product, Category category)
+	public void addOneCategory(Product product, Category category)
 	{
 		product.getCategories().add(category);
-		return prodRepo.save(product);
+		this.prodRepo.save(product);
 	}
 	
+	// Retrieves a list of products a particular category does not belong to
+	public List<Product> getAllProdNotInCat(Category category)
+	{
+		return prodRepo.findByCategoriesNotContains(category);
+	}
 	
 }
